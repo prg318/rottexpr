@@ -2,9 +2,9 @@
 This fork adds window scaling functionality.  You can scale the window by 2X,
 3X, or 4X using one of the following launch arguments:
 
-SCALE2X
-SCALE3X
-SCALE4X
+* SCALE2X
+* SCALE3X
+* SCALE4X
 
 # rottexpr
 
