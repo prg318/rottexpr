@@ -106,10 +106,11 @@ void GraphicsMode ( void )
     SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "nearest");
     if (sdl_fullscreen)
         flags = SDL_WINDOW_FULLSCREEN_DESKTOP;
+
     
     window = SDL_CreateWindow("Rise of the Triad",
                                SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
-                               iGLOBAL_SCREENWIDTH, iGLOBAL_SCREENHEIGHT,
+                               iGLOBAL_SCREENWIDTH*scalefactor, iGLOBAL_SCREENHEIGHT*scalefactor,
                                flags);
     
     if (window == NULL)
@@ -119,6 +120,7 @@ void GraphicsMode ( void )
     }
     
     renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
+    SDL_RenderSetScale(renderer, scalefactor, scalefactor);
     
     sdl_texture = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_ABGR8888,
                                     SDL_TEXTUREACCESS_STREAMING, iGLOBAL_SCREENWIDTH,

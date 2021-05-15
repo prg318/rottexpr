@@ -101,6 +101,7 @@ boolean dopefish;
 boolean newlevel = false;
 boolean infopause;
 boolean quiet = false;
+int scalefactor = 1;
 
 boolean DebugOk = false;
 
@@ -473,7 +474,8 @@ void CheckCommandLineParameters( void )
                         "TRANSPORT","DOPEFISH","SCREENSHOTS",
                         "MONO","MAPSTATS","TILESTATS","VER","net",
                         "PAUSE","SOUNDSETUP","WARP","IS8250","ENABLEVR",
-                        "TIMELIMIT","MAXTIMELIMIT","NOECHO","DEMOEXIT","QUIET",NULL
+                        "TIMELIMIT","MAXTIMELIMIT","NOECHO","DEMOEXIT","QUIET",
+			"SCALE2X","SCALE3X","SCALE4X",NULL
                        };
     int i,n;
 
@@ -544,6 +546,9 @@ void CheckCommandLineParameters( void )
         printf ("                next parameter is time in seconds\n");
         printf ("   MAXTIMELIMIT - Maximimum time to count down from\n");
         printf ("                next parameter is time in seconds\n");
+        printf ("   2X         - Scale window by 2X\n");
+        printf ("   3X         - Scale window by 3X\n");
+        printf ("   4X         - Scale window by 4X\n");
         printf ("   DOPEFISH   - ?\n");
         printf (" \n");
         printf ("CONTROLS\n");
@@ -726,6 +731,15 @@ void CheckCommandLineParameters( void )
         case 21:
             quiet = true;
             break;
+	case 22:
+	    scalefactor = 2;
+	    break;
+	case 23:
+	    scalefactor = 3;
+	    break;
+	case 24:
+	    scalefactor = 4;
+	    break;
         }
     }
 }

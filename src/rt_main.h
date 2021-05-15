@@ -132,6 +132,7 @@ extern  boolean  timelimitenabled;
 extern  boolean  noecho;
 extern  boolean  demoexit;
 extern  boolean  quiet;
+extern  int      scalefactor;
 
 extern gametype  gamestate;
 extern boolean DebugOk;
