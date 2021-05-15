@@ -46,3 +46,6 @@ TIMELIMIT  - Play ROTT in time limit mode
 MAXTIMELIMIT - Maximimum time to count down from		(next parameter is time in seconds)
 
 DOPEFISH   - I think you know
+SCALE2X    - Scale window by 2X
+SCALE3X    - Scale window by 3X
+SCALE4X    - Scale window by 4X
