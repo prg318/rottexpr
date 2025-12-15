@@ -49,23 +49,3 @@ jobs:
       with:
         name: rottexpr-macos
         path: src/rott
-
-  build-windows:
-    runs-on: windows-latest
-
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
-
-    - name: Install dependencies
-      run: vcpkg install sdl2 sdl2-mixer
-
-    - name: Build rottexpr
-      working-directory: src
-      run: make
-
-    - name: Upload artifact
-      uses: actions/upload-artifact@v4
-      with:
-        name: rottexpr-win64
-        path: src/rott.exe
