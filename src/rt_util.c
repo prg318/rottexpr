@@ -19,7 +19,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 #include "rt_def.h"
 
 #if USE_SDL
-#include "SDL2/SDL.h"
+#include "SDL.h"
 #endif
 
 #include <stdarg.h>
@@ -31,7 +31,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 #include <stdlib.h>
 #include <sys/stat.h>
 #include <time.h>
-#include <SDL2/SDL_render.h>
+#include <SDL_render.h>
 #include "watcom.h"
 #include "_rt_util.h"
 #include "rt_util.h"
@@ -349,7 +349,7 @@ void Error (char *error, ...)
         }
 
         printf("%s ", token);
-        
+
         px++;                //SPACE
         GetToken (true);
     }
@@ -565,7 +565,7 @@ int SafeOpenWrite (char *_filename)
 
     handle = open(filename,O_RDWR | O_BINARY | O_CREAT | O_TRUNC, S_IRUSR | S_IWUSR );
 
-    
+
     //handle = open(filename,O_RDWR | O_BINARY | O_CREAT | O_TRUNC );
 
     if (handle == -1)
@@ -1272,7 +1272,7 @@ void VL_FillPalette (int red, int green, int blue)
 
     //SDL_SetColors (SDL_GetVideoSurface (), cmap, 0, 256);
     SDL_SetPaletteColors(sdl_surface->format->palette, cmap, 0, 256);
-    
+
 }
 
 //===========================================================================
