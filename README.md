@@ -53,7 +53,7 @@ With the `SDL_SOUNDFONTS` environment variable properly pointing at a valid SF2 
 
 ## Known Issues
 
-- Builds successfully, but fails to start
+- Builds successfully on FreeBSD, but fails to start
 
 # rottexpr - Original README
 
