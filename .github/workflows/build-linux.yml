@@ -2,7 +2,7 @@ name: rottexpr C/C++ CI
 
 on:
   push:
-    branches: [ "master" ]
+    branches: [ "prg318-build-action" ]
   pull_request:
     branches: [ "master" ]
   workflow_dispatch:
