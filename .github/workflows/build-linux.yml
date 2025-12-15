@@ -1,4 +1,4 @@
-name: rottexpr build: Ubuntu 64bit latest
+name: rottexpr build - ubuntu-latest x64
 
 on:
   push:
