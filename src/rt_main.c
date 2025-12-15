@@ -146,7 +146,7 @@ extern boolean borderlessWindow;
 extern void ComSetTime ( void );
 extern void VH_UpdateScreen (void);
 extern void RottConsole ( void );
-extern void	ReadDelay(long delay);
+extern void ReadDelay(long delay);
 extern void RecordDemoQuery ( void );
 
 
@@ -475,7 +475,7 @@ void CheckCommandLineParameters( void )
                         "MONO","MAPSTATS","TILESTATS","VER","net",
                         "PAUSE","SOUNDSETUP","WARP","IS8250","ENABLEVR",
                         "TIMELIMIT","MAXTIMELIMIT","NOECHO","DEMOEXIT","QUIET",
-			"SCALE2X","SCALE3X","SCALE4X",NULL
+                        "SCALE2X","SCALE3X","SCALE4X",NULL
                        };
     int i,n;
 
@@ -731,15 +731,15 @@ void CheckCommandLineParameters( void )
         case 21:
             quiet = true;
             break;
-	case 22:
-	    scalefactor = 2;
-	    break;
-	case 23:
-	    scalefactor = 3;
-	    break;
-	case 24:
-	    scalefactor = 4;
-	    break;
+        case 22:
+            scalefactor = 2;
+            break;
+        case 23:
+            scalefactor = 3;
+            break;
+        case 24:
+            scalefactor = 4;
+            break;
         }
     }
 }
@@ -1330,7 +1330,7 @@ void GameLoop (void)
             break;
 
         case ex_died:
-//		   SetTextMode (  ); //12345678
+            //SetTextMode (  ); //12345678
             Died ();
             StopWind();
             DisableHudStretch();
@@ -1487,7 +1487,7 @@ void GameLoop (void)
 
                 WaitKeyUp();
                 LastScan = 0;
-                while (!LastScan) IN_UpdateKeyboard();	// Thanks again DrLex
+                while (!LastScan) IN_UpdateKeyboard();       // Thanks again DrLex
                 LastScan=0;
             }
 #endif
@@ -2783,7 +2783,7 @@ void WritePCX (char * file, byte * source)
     //
     // Write to a bit-packed file.
     //
-    for (y = 0;  y < iGLOBAL_SCREENHEIGHT;  ++y) 		// for each line in band
+    for (y = 0;  y < iGLOBAL_SCREENHEIGHT;  ++y)         // for each line in band
         if (PutBytes (((unsigned char *) (source+(y*iGLOBAL_SCREENWIDTH))),
                       pcxHDR.bytesperline))
             Error ("Error writing PCX bit-packed line!\n");
@@ -2835,9 +2835,9 @@ int PutBytes (unsigned char *ptr, unsigned int bytes)
             ++count;
         }
         // If we can pack the sequence, or if we have to add a
-        //	byte before it because the top 2 bits of the value
-        //	are 1's, write a packed sequence of 2 bytes.
-        //	Otherwise, just write the byte value.
+        // byte before it because the top 2 bits of the value
+        // are 1's, write a packed sequence of 2 bytes.
+        // Otherwise, just write the byte value.
         //
         if (count > 1  ||  (startbyte & 0xc0) == 0xc0)
         {
