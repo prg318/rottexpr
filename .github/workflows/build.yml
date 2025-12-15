@@ -71,7 +71,7 @@ jobs:
     - name: Build rottexpr
       shell: msys2 {0}
       working-directory: src
-      run: make
+      run: mingw32-make
 
     - name: Upload artifact
       uses: actions/upload-artifact@v4
