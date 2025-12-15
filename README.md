@@ -1,12 +1,57 @@
-# prg/rottexpr
-This fork adds window scaling functionality.  You can scale the window by 2X,
-3X, or 4X using one of the following launch arguments:
+# prg/rottexpr fork details
+This repository contains a fork of [Steven LeVesque's fork](https://github.com/LTCHIPS/rottexpr) of the [icculus.org Rise of the Triad Linux port](https://icculus.org/rott/). This fork adds some additional options as well as macOS and Windows/msys2 build support. Some of the new options include:
 
-* SCALE2X
-* SCALE3X
-* SCALE4X
+- SCALE2X
+- SCALE3X
+- SCALE4X
+- NOSOUND
 
-# rottexpr
+Pull requests, issues, and suggestions are welcome.
+
+## Build Instructions
+
+`rottexpr` can be built for Windows, Linux, and macOS.
+In order to build, you'll need to install the SDL2 and SDL2_mixer libraries.
+
+On MSYS2 MINGW64:
+
+    pacboy -S SDL2:x SDL2_mixer:x
+
+On macOS:
+
+    brew install sdl2 sdl2_mixer
+
+On Debian:
+
+    apt install libsdl2-dev libsdl2-mixer-dev
+
+On Arch Linux:
+
+    pacman -S sdl2 sdl2_mixer
+
+On FreeBSD:
+
+    pkg install sdl2 sdl2_mixer gmake   # Remember to run `gmake` instead of BSD's `make`
+
+Once you have the dependencies installed, run the following command in the project root:
+
+    make -C src
+
+This will build the `rott` or `rott.exe` binary in the `src` directory.
+In order to run, change directory to your game installation (the base directory with `DARKWAR.WAD`) and run `rott`.
+
+## Music
+
+On Windows, music should work out of the box because Windows includes a very nice soundfont with your Windows install.
+On Linux and macOS, you will need to provide a soundfont in order for SDL2 to play the MIDI files.
+First, you'll need to acquire an SF2-format soundfont. There's a wide variety of soundfonts that you can use with SDL2, but if you don't have one you can use the Fluid soundfont.  Here's a [direct link to the fluid soundfont zip from Debian's mirrors](http://deb.debian.org/debian/pool/main/f/fluid-soundfont/fluid-soundfont_3.1.orig.tar.gz).
+You'll need to set the `SDL_SOUNDFONTS` environment variable and point it at the soundfont you'd like to use:
+
+    export SDL_SOUNDFONTS=/usr/share/soundfonts/FluidR3_GM.sf2
+
+With the `SDL_SOUNDFONTS` environment variable properly pointing at a valid SF2 soundfont, SDL2_mixer should be able to playback the MIDI files. This is well worth your time because the Rise of the Triad soundtrack is absolutely incredible - shout out to [Lee Jackson - an absolute legend](https://dleejackson.lbjackson.com/).
+
+# rottexpr - Original README
 
 Based off of the icculus Rise of the Triad source port
 (can be found here: https://icculus.org/rott/)
