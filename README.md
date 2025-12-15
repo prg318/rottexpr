@@ -51,6 +51,10 @@ You'll need to set the `SDL_SOUNDFONTS` environment variable and point it at the
 
 With the `SDL_SOUNDFONTS` environment variable properly pointing at a valid SF2 soundfont, SDL2_mixer should be able to playback the MIDI files. This is well worth your time because the Rise of the Triad soundtrack is absolutely incredible - shout out to [Lee Jackson - an absolute legend](https://dleejackson.lbjackson.com/).
 
+## Known Issues
+
+- Builds successfully, but fails to start
+
 # rottexpr - Original README
 
 Based off of the icculus Rise of the Triad source port
