@@ -24,3 +24,9 @@ jobs:
     - name: Build rottexpr
       working-directory: src
       run: make
+
+    - name: Upload binary as artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: rottexpr-binary
+        path: src/rott
