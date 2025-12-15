@@ -2,7 +2,7 @@ name: rottexpr C/C++ CI
 
 on:
   push:
-    branches: [ "prg318-build-action" ]
+    branches: [ "master" ]
   pull_request:
     branches: [ "master" ]
   workflow_dispatch:
@@ -28,5 +28,5 @@ jobs:
     - name: Upload binary as artifact
       uses: actions/upload-artifact@v4
       with:
-        name: rottexpr-binary
+        name: rott-ubuntu64-binary
         path: src/rott
