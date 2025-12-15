@@ -12,6 +12,8 @@ CPPFLAGS += -DSITELICENSE=$(SITELICENSE)
 
 ROTT ?= rott
 
+UNAME_S := $(shell uname -s)
+
 # Regular build flags and rules
 
 CC ?= gcc
@@ -31,6 +33,11 @@ LDFLAGS += $(EXTRALDFLAGS)
 LDLIBS += $(shell sdl2-config --libs)
 LDLIBS += -lSDL2_mixer
 LDLIBS += $(EXTRALDLIBS)
+
+# (Free|Open|Net)BSD needs -lexecinfo to link backtrace()
+ifeq ($(findstring BSD,$(UNAME_S)),BSD)
+	LDLIBS += -lexecinfo
+endif
 
 OBJS :=
 OBJS += cin_actr.o
@@ -96,7 +103,7 @@ $(OBJS): develop.h
 $(AUDIOLIB):
 	$(MAKE) -C audiolib
 
-tidy: 
+tidy:
 	$(RM) $(OBJS) $(ROTT) $(ROTT).exe
 
 clean: tidy
