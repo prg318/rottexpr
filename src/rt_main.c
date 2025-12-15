@@ -475,7 +475,7 @@ void CheckCommandLineParameters( void )
                         "MONO","MAPSTATS","TILESTATS","VER","net",
                         "PAUSE","SOUNDSETUP","WARP","IS8250","ENABLEVR",
                         "TIMELIMIT","MAXTIMELIMIT","NOECHO","DEMOEXIT","QUIET",
-                        "SCALE2X","SCALE3X","SCALE4X",NULL
+                        "SCALE2X","SCALE3X","SCALE4X","NOSOUND",NULL
                        };
     int i,n;
 
@@ -739,6 +739,9 @@ void CheckCommandLineParameters( void )
             break;
         case 24:
             scalefactor = 4;
+            break;
+        case 25:
+            NoSound = true;
             break;
         }
     }
