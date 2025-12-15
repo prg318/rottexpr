@@ -69,7 +69,7 @@ jobs:
           mingw-w64-x86_64-SDL2_mixer
 
     - name: Build rottexpr
-      shell: msys {0}
+      shell: msys2 {0}
       working-directory: src
       run: make
 
