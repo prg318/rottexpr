@@ -1,4 +1,4 @@
-name: rottexpr C/C++ CI
+name: rottexpr build: Ubuntu 64bit latest
 
 on:
   push:
