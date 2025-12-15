@@ -57,10 +57,19 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
 
-    - name: Install dependencies
-      run: vcpkg install sdl2 sdl2-mixer
+    - name: Setup MSYS2
+      uses: msys2/setup-msys2@v2
+      with:
+        msystem: MINGW64
+        update: true
+        install: >-
+          mingw-w64-x86_64-gcc
+          mingw-w64-x86_64-make
+          mingw-w64-x86_64-SDL2
+          mingw-w64-x86_64-SDL2_mixer
 
     - name: Build rottexpr
+      shell: msys {0}
       working-directory: src
       run: make
 
