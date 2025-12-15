@@ -1,0 +1,71 @@
+name: rottexpr build - ubuntu-latest x64
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+  workflow_dispatch:
+
+jobs:
+  build-linux:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Install dependencies
+      run: |
+          sudo apt-get update
+          sudo apt-get install -y libsdl2-dev libsdl2-mixer-dev
+
+    - name: Build rottexpr
+      working-directory: src
+      run: make
+
+    - name: Upload artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: rottexpr-ubuntu64
+        path: src/rott
+
+  build-macos:
+    runs-on: macos-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Install dependencies
+      run: brew install sdl2 sdl2_mixer
+
+    - name: Build rottexpr
+      working-directory: src
+      run: make
+
+    - name: Upload artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: rottexpr-macos
+        path: src/rott
+
+  build-windows:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Install dependencies
+      run: vcpkg install sdl2 sdl2-mixer
+
+    - name: Build rottexpr
+      working-directory: src
+      run: make
+
+    - name: Upload artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: rottexpr-win64
+        path: src/rott.exe
