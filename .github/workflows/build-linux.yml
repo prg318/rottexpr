@@ -13,14 +13,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
     - name: Install dependencies
       run: |
           sudo apt-get update
           sudo apt-get install -y libsdl2-dev libsdl2-mixer-dev
-    - name: Debug current directory and files
-      run: |
-          pwd
-          ls -la
+
     - name: Build rottexpr
       working-directory: src
       run: make
