@@ -73,8 +73,16 @@ jobs:
       working-directory: src
       run: mingw32-make
 
+    - name: Package Windows build with DLLs
+      shell: msys2 {0}
+      run: |
+        mkdir -p release
+        cp src/rott.exe release/
+        cp /mingw64/bin/SDL2.dll release/
+        cp /mingw64/bin/SDL2_mixer.dll release/
+
     - name: Upload artifact
       uses: actions/upload-artifact@v4
       with:
         name: rottexpr-win64
-        path: src/rott.exe
+        path: release/
