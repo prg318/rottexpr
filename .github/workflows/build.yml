@@ -1,4 +1,4 @@
-name: rottexpr build - ubuntu-latest x64
+name: rottexpr build
 
 on:
   push:
@@ -8,8 +8,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
-
+  build-linux:
     runs-on: ubuntu-latest
 
     steps:
@@ -25,8 +24,28 @@ jobs:
       working-directory: src
       run: make
 
-    - name: Upload binary as artifact
+    - name: Upload artifact
       uses: actions/upload-artifact@v4
       with:
-        name: rott-ubuntu64-binary
+        name: rottexpr-ubuntu64
+        path: src/rott
+
+  build-macos:
+    runs-on: macos-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Install dependencies
+      run: brew install sdl2 sdl2_mixer
+
+    - name: Build rottexpr
+      working-directory: src
+      run: make
+
+    - name: Upload artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: rottexpr-macos
         path: src/rott
