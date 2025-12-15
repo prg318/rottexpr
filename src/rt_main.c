@@ -26,7 +26,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 #if USE_SDL
 /* Need to redefine main to SDL_main on some platforms... */
-#include "SDL2/SDL.h"
+#include "SDL.h"
 #endif
 
 #include "rt_actor.h"
@@ -155,7 +155,7 @@ extern int CountDigits(const int number);
 int main (int argc, char *argv[])
 {
     extern char *BATTMAPS;
-    
+
     _argc = argc;
     _argv = argv;
 
@@ -191,7 +191,7 @@ int main (int argc, char *argv[])
     FixFilePath(BATTMAPS);
     gamestate.Product = ROTT_SHAREWARE;
 #else
-    
+
     BATTMAPS = strdup(SITELICENSEBATTLELEVELS);
 
     FixFilePath(BATTMAPS);
@@ -228,7 +228,7 @@ int main (int argc, char *argv[])
     CheckCommandLineParameters();
 
     // Start up Memory manager with a certain amount of reserved memory
- 
+
     Z_Init(50000,1000000);
 
     IN_Startup ();
@@ -243,8 +243,8 @@ int main (int argc, char *argv[])
         BuildTables ();
         GetMenuInfo ();
     }
-    
-   
+
+
 
     SetRottScreenRes (iGLOBAL_SCREENWIDTH, iGLOBAL_SCREENHEIGHT);
 
@@ -322,11 +322,11 @@ int main (int argc, char *argv[])
     if (standalone==true)
         ServerLoop();
 
-    
-    
+
+
     VL_SetVGAPlaneMode();
     VL_SetPalette(origpal);
-    
+
     if (mouseenabled)
     {
         SDL_SetRelativeMouseMode(SDL_TRUE);
@@ -406,11 +406,11 @@ void DrawRottTitle ( void )
     if (CheckParm("QUIET") == 0)
     {
         SetTextMode();
-        
+
         char rottStartupStr[] = "Rise of the Triad Startup  Version ";
-        
+
             strncpy (title,rottStartupStr, sizeof(rottStartupStr));
-            
+
             strncat (title,itoa(ROTTMAJORVERSION,&buf[0],10), CountDigits(ROTTMAJORVERSION));
             strncat (title,".", 1);
 #if (SHAREWARE==1)||(DOPEFISH==0)
@@ -426,7 +426,7 @@ void DrawRottTitle ( void )
             printf("%s ", title);
 
             memset (title,0,sizeof(title));
-            
+
             if (gamestate.Product == ROTT_SHAREWARE)
             {
 #if (DELUXE==1)
@@ -435,7 +435,7 @@ void DrawRottTitle ( void )
                 char header[] = "Episode One";
 #else
                 char header[] = "Shareware Version";
-                
+
 #endif
                 strncpy(title,header, strlen(header));
             }
@@ -454,16 +454,16 @@ void DrawRottTitle ( void )
                 char header[] = "Commercial Version";
                 strncpy(title,header, strlen(header));
             }
-            
+
             //strncpy(title, header, )
 
             px=(80-strlen(title))>>1;
             py=1;
 
             printf("%s ", title);
-            
+
             printf ("\n");
- 
+
    }
 
 }
@@ -808,8 +808,8 @@ void SetupWads( void )
         if (_argv[arg+1] != 0) { //are there a filename included
             int templen = 129 + strlen(_argv[arg+1]);
             tempstr = realloc(tempstr, templen);
-            
-            
+
+
             snprintf(tempstr, templen,"%s", _argv[arg+1]);
             //strncpy (tempstr,_argv[arg+1], strlen(_argv[arg+1]));//copy it to tempstr
             if (strlen (tempstr) < MAX_PATH) {
@@ -817,9 +817,9 @@ void SetupWads( void )
                     strncat (tempstr,".rtl", 4);//non exists, try add .rtc
                     if (access (tempstr, 0) != 0) { //try open again
                         //stil no useful filename
-                        
+
                         char notfoundStr[] = " not found, skipping RTL file \n";
-                        
+
                         strncat (tempstr,notfoundStr, strlen(notfoundStr));
                         printf("%s", tempstr);
                         goto NoRTL;
@@ -827,7 +827,7 @@ void SetupWads( void )
                 }
                 if((f = fopen( tempstr, "r" )) == NULL ) { //try opnong file
                     char cannotOpenStr[] = " not could be opened, skipping RTL file \n";
-                    
+
                     strncat (tempstr, cannotOpenStr, strlen(cannotOpenStr));
                     printf("%s", tempstr);
                     goto NoRTL;
@@ -856,7 +856,7 @@ NoRTL:
     {
         FILE *f;
         char *buf = malloc(32);
-        
+
         if (_argv[arg+1] != 0) { //are there a filename included
             int templen = 129 + strlen(_argv[arg+1]);
             tempstr = realloc(tempstr, templen);
@@ -868,14 +868,14 @@ NoRTL:
                     if (access (tempstr, 0) != 0) { //try open again
                         //stil no useful filename
                         char notfoundRTC[] = " not found, skipping RTC file ";
-                        
+
                         strncat (tempstr,notfoundRTC, strlen(notfoundRTC));
                         goto NoRTC;
                     }
                 }
                 if((f = fopen( tempstr, "r" )) == NULL ) { //try opening file
                     char cannotOpenRTC[] = " could not be opened, skipping RTC file ";
-                    
+
                     strncat (tempstr,cannotOpenRTC, strlen(cannotOpenRTC));
                     goto NoRTL;
                 } else {
@@ -1071,8 +1071,8 @@ void GameLoop (void)
     {
         //no longer needed in SDL2
         //SDL_WarpMouse(iGLOBAL_SCREENWIDTH<<1, iGLOBAL_SCREENHEIGHT<<1);
-        
-        
+
+
         if ( playstate == ex_battledone )
         {
             while( damagecount > 0 )
@@ -1223,7 +1223,7 @@ void GameLoop (void)
         case ex_resetgame:
 
             // SetTextMode (  ); //12345678
-            
+
             EnableScreenStretch();//bna++ shut on streech mode
             InitCharacter();
 
@@ -1298,7 +1298,7 @@ void GameLoop (void)
                 {
                     PlayCinematic();
                 }
-                
+
                 SetupGameLevel();
             }
 
@@ -1425,7 +1425,7 @@ void GameLoop (void)
 #if (SHAREWARE==0)
             if ((playstate==ex_bossdied) && (gamestate.mapon!=30))
             {
-                
+
                 int shape;
                 lbm_t * LBM;
                 byte *s;
@@ -1491,7 +1491,7 @@ void GameLoop (void)
                 LastScan=0;
             }
 #endif
-            
+
             LevelCompleted ( playstate );
 
             NextLevel = GetNextMap(player->tilex,player->tiley);
@@ -1639,14 +1639,14 @@ void QuitGame ( void )
         int time=GetTicCount();
         while (GetTicCount()==time) {}
     }
-    
-    
+
+
     PrintMapStats();
     PrintTileStats();
     SetTextMode();
 
     ClearScanCodes();
-    
+
     exit(0);
 }
 
@@ -1732,7 +1732,7 @@ void UpdateGameObjects ( void )
         {
             ResurrectEnemies();
         }
-        
+
         for(j=0; j<numclocks; j++)
             if (Clocks[j].time1 &&
                     ((gamestate.TimeCount == Clocks[j].time1) ||
@@ -1811,7 +1811,7 @@ void PauseLoop ( void )
     StopWind();
 
     UpdateClientControls ();
-    
+
     while (oldpolltime<oldtime)
     {
         CheckUnPause();
@@ -1999,8 +1999,8 @@ fromloadedgame:
             }
 
             ControlPanel( LastScan );
-            
-            
+
+
 
             // set detail level
             doublestep = 2 - DetailLevel;

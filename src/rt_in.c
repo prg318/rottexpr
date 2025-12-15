@@ -18,12 +18,12 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <SDL2/SDL_scancode.h>
-#include <SDL2/SDL_keycode.h>
-#include <SDL2/SDL_mouse.h>
+#include <SDL_scancode.h>
+#include <SDL_keycode.h>
+#include <SDL_mouse.h>
 
 #if USE_SDL
-#include "SDL2/SDL.h"
+#include "SDL.h"
 #endif
 
 #include "rt_main.h"

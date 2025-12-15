@@ -15,7 +15,7 @@
 #include "rt_def.h"
 
 #if defined(USE_SDL)
-#include "SDL2/SDL.h"
+#include "SDL.h"
 #endif
 
 /*
@@ -97,35 +97,35 @@ int setup_homedir (void)
 
 /*
  * GetDigitCount returns the number of digits that are found in an integer
- * 
+ *
  * Params: number - number to measure # of digits
- * 
+ *
  * Returns: number of digits founded in number
 */
 int CountDigits(const int number)
 {
     int lenResult = 1;
-    
+
     //int remainder = number;
-    
+
     if(number)
     {
         int oldRemainder;
         int remainder = number;
-        
+
         while(1)
         {
             oldRemainder = remainder;
-            
+
             remainder%=10;
             if (oldRemainder == remainder)
                 break;
-            
+
             lenResult++;
-            
+
         }
     }
-    
+
     return lenResult;
 }
 
@@ -275,4 +275,3 @@ void crash_print (int sig)
 #endif
     exit (1);
 }
-

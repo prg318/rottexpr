@@ -31,7 +31,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 #include <ctype.h>
 
 #include <unistd.h>
-#include "SDL2/SDL.h"
+#include "SDL.h"
 
 #include <sys/types.h>
 #include <sys/stat.h>
@@ -751,7 +751,7 @@ CP_MenuNames ExtGameOptionsNames[] =
     "ENABLE ZOMROTT"
 }; //LT added
 
-CP_MenuNames VisualOptionsNames[] = 
+CP_MenuNames VisualOptionsNames[] =
 {
     "SCREEN RESOLUTION",
     "ADJUST FOCAL WIDTH",
@@ -822,7 +822,7 @@ void CP_ScreenResolution(void);
 void CP_DisplayOptions(void);
 void DoAdjustHudScale(void);
 
-CP_itemtype VisualsOptionsMenu[] = 
+CP_itemtype VisualsOptionsMenu[] =
 {
     {1, "", 'S', (menuptr)CP_ScreenResolution},
     {1, "", 'F', (menuptr)DoAdjustFocalWidth},
@@ -1745,9 +1745,9 @@ void CleanUpControlPanel (void)
     FreeSavedScreenPtr ();
 
     WriteConfig ();
-    
+
     //change the focal width if modified
-    
+
     RecalculateFocalWidth();
 
     INL_GetJoyDelta (joystickport, &joyx, &joyy);
@@ -1876,7 +1876,7 @@ void ControlPanel
         break;
 
     }
-    
+
     if (playstate == ex_stillplaying)
     {
         DisableScreenStretch();
@@ -3722,7 +3722,7 @@ void CP_Control (void)
                     SDL_SetRelativeMouseMode(SDL_TRUE);
                 else
                     SDL_SetRelativeMouseMode(SDL_FALSE);
-                
+
                 DrawCtlButtons ();
                 CusItems.curpos=-1;
             }
@@ -5246,14 +5246,14 @@ void DrawVisualsMenu (void)
     SetAlternateMenuBuf();
     ClearMenuBuf();
     SetMenuTitle ("Visuals Menu");
-    
+
     MN_GetCursorLocation( &VisualOptionsItems, &VisualsOptionsMenu[ 0 ] );
     DrawMenu (&VisualOptionsItems, &VisualsOptionsMenu[0]);
     DrawMenuBufItem (VisualOptionsItems.x, ((VisualOptionsItems.curpos*14)+(VisualOptionsItems.y-2)),
                      W_GetNumForName( LargeCursor ) + CursorFrame[ CursorNum ] );
     DisplayInfo (0);
     FlipMenuBuf();
-    
+
 }
 
 void CP_VisualsMenu(void)
@@ -5282,7 +5282,7 @@ void DoAdjustFocalWidth (void)
 
 extern int hudRescaleFactor;
 void DoAdjustHudScale (void)
-{   
+{
     SliderMenu (&hudRescaleFactor, 10, 0, 44, 81, 194, 1, "block2", NULL,
                 "Adjust Hud Scaling", "Small", "Large" );
     DrawVisualsMenu ();
@@ -5445,7 +5445,7 @@ void DrawDisplayOptionsMenu (void)
     MN_GetCursorLocation( &DisplayOptionsMenu, &DisplayOptionsItems[ 0 ] );
     DrawMenu (&DisplayOptionsMenu, &DisplayOptionsItems[0]);
     DrawDisplayOptionsButtons();
-    
+
     DisplayInfo (0);
 
     FlipMenuBuf();
@@ -5457,7 +5457,7 @@ void CP_DisplayOptions(void)
     DrawDisplayOptionsMenu();
 
     int which;
-    
+
     do
     {
         which = HandleMenu (&DisplayOptionsMenu, &DisplayOptionsItems[0], NULL);
@@ -5501,9 +5501,9 @@ void CP_DisplayOptions(void)
             default:
                 break;
         }
-        
+
     } while (which >= 0);
-    
+
     DrawVisualsMenu();
 
 }
@@ -5526,7 +5526,7 @@ void DrawExtOptionsMenu (void)
     MN_GetCursorLocation( &ExtOptionsItems, &ExtOptionsMenu[ 0 ] );
     DrawMenu (&ExtOptionsItems, &ExtOptionsMenu[0]);
     DrawExtOptionsButtons ();
-    
+
     DisplayInfo (0);
 
     FlipMenuBuf();
@@ -5815,7 +5815,7 @@ void CP_ExtGameOptionsMenu (void)
 
         //EraseMenuBufRegion (25, 4, 287 - 25, 10 );
         //DrawOptionDescription( ExtGameOptionsDesc, which);
-        
+
         switch (which)
         {
         case 0:
